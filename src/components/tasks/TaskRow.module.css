@@ -1,0 +1,140 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 7px 8px;
+  border-top: 1px solid rgba(var(--fgc), 0.055);
+  cursor: pointer;
+  border-radius: 5px;
+}
+.row:hover {
+  background: rgba(var(--fgc), 0.035);
+}
+
+.title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 14.5px;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: none;
+}
+
+.tag {
+  font-size: 11.5px;
+  padding: 1.5px 7px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.repeatGlyph {
+  font-size: 12px;
+  color: rgba(var(--fgc), 0.38);
+  line-height: 1;
+}
+
+.due {
+  font-size: 12px;
+  white-space: nowrap;
+  min-width: 56px;
+  text-align: right;
+}
+
+.prioDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+}
+
+.actionPill {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  border: 1px solid rgba(var(--fgc), 0.12);
+  background: var(--surface);
+  color: rgba(var(--fgc), 0.6);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.actionPill:hover {
+  background: rgba(var(--fgc), 0.06);
+  color: var(--fg);
+}
+
+.deleteIconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 21px;
+  border-radius: 4px;
+  border: 1px solid rgba(var(--fgc), 0.12);
+  background: var(--surface);
+  color: rgba(var(--fgc), 0.45);
+  cursor: pointer;
+  flex: none;
+}
+.deleteIconBtn:hover {
+  background: rgba(201, 128, 122, 0.08);
+  border-color: rgba(201, 128, 122, 0.5);
+  color: #c9807a;
+}
+
+/* mobile */
+.rowMobile {
+  position: relative;
+  touch-action: pan-y;
+  border-top: 1px solid rgba(var(--fgc), 0.055);
+  overflow: hidden;
+}
+
+.underlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 0 18px;
+  transition: opacity 0.12s ease;
+  pointer-events: none;
+}
+
+.underlayBump {
+  justify-content: flex-start;
+  color: #5c8f60;
+  background: rgba(92, 143, 96, 0.14);
+}
+
+.underlayDelete {
+  justify-content: flex-end;
+  color: #c9807a;
+  background: rgba(201, 128, 122, 0.14);
+}
+
+.foreground {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 2px;
+  cursor: pointer;
+}

@@ -1,0 +1,45 @@
+.group {
+  margin-bottom: 26px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px 4px;
+}
+
+.label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(var(--fgc), 0.62);
+}
+
+.labelOverdue {
+  color: #b4635c;
+}
+
+.count {
+  font-size: 12px;
+  color: rgba(var(--fgc), 0.34);
+}
+
+.addRow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 7px 8px;
+  font-size: 14px;
+  color: rgba(var(--fgc), 0.32);
+  cursor: pointer;
+  border-top: 1px solid rgba(var(--fgc), 0.055);
+  user-select: none;
+}
+.addRow:hover {
+  color: rgba(var(--fgc), 0.6);
+}
+.addRow span {
+  width: 16px;
+  text-align: center;
+  font-size: 14px;
+}

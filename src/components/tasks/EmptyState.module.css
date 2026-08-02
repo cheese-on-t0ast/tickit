@@ -1,0 +1,67 @@
+.wrap {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: tk-fade 0.2s ease-out;
+}
+
+.box {
+  width: 132px;
+  height: 96px;
+  border-radius: 7px;
+  border: 1px solid rgba(var(--fgc), 0.1);
+  background: repeating-linear-gradient(-45deg, rgba(var(--fgc), 0.045) 0 6px, transparent 6px 12px);
+  display: flex;
+  align-items: flex-end;
+  padding: 9px;
+  margin-bottom: 22px;
+}
+
+.skeletonStack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.skeletonBarWide {
+  height: 6px;
+  width: 70%;
+  border-radius: 3px;
+  background: rgba(var(--fgc), 0.13);
+}
+
+.skeletonBarNarrow {
+  height: 6px;
+  width: 45%;
+  border-radius: 3px;
+  background: rgba(var(--fgc), 0.09);
+}
+
+.heading {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 6px;
+  color: var(--fg);
+}
+
+.body {
+  font-size: 13.5px;
+  color: rgba(var(--fgc), 0.48);
+  max-width: 330px;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.primaryButton {
+  composes: accentButton from '../../styles/shared.module.css';
+  padding: 6px 13px;
+}

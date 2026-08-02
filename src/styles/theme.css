@@ -1,0 +1,126 @@
+:root {
+  color-scheme: light dark;
+}
+
+[data-theme='light'] {
+  --fg: #37352f;
+  --fgc: 55, 53, 47;
+  --surface: #ffffff;
+  --sidebar: #f7f6f3;
+  --canvas: #eeece7;
+  /* Monotone accent, not user-configurable — color is reserved for project
+     dots and priority indicators, not app chrome. */
+  --tk-accent: #37352f;
+  --on-accent: #ffffff;
+}
+
+[data-theme='dark'] {
+  --fg: #edeae4;
+  --fgc: 237, 234, 228;
+  --surface: #1e1e1d;
+  --sidebar: #171716;
+  --canvas: #16161a;
+  --tk-accent: #edeae4;
+  --on-accent: #1e1e1d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--fg);
+  font-family: ui-sans-serif, -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #3b6ea8;
+  text-decoration: none;
+}
+a:hover {
+  color: #2c5686;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+::selection {
+  background: #d3e5ef;
+}
+
+@keyframes tk-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes tk-sheet {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes tk-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes tk-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+[data-scroll]::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+[data-scroll]::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+[data-scroll]:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(120, 118, 112, 0.34);
+}
+[data-scroll][data-scrolling='1']::-webkit-scrollbar-thumb {
+  background-color: rgba(120, 118, 112, 0.34);
+}
+[data-scroll]::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(120, 118, 112, 0.55);
+}

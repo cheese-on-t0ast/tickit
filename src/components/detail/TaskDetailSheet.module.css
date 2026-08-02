@@ -1,0 +1,100 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 88%;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: 14px 14px 0 0;
+  box-shadow: 0 -14px 34px -26px rgba(15, 15, 15, 0.4);
+  animation: tk-sheet 0.18s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.header {
+  flex: none;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px 0 14px;
+  border-bottom: 1px solid rgba(var(--fgc), 0.06);
+}
+
+.listName {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(var(--fgc), 0.62);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 8px;
+}
+
+.headerBtn {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  flex: none;
+}
+
+.menuWrap {
+  position: relative;
+}
+
+.menuOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 19;
+  background: transparent;
+}
+
+.menu {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  z-index: 20;
+  min-width: 172px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--fg);
+  cursor: pointer;
+}
+.menuItem:hover {
+  background: rgba(var(--fgc), 0.06);
+}
+
+.menuItemDestructive {
+  color: #c9807a;
+}
+
+.body {
+  flex: 1;
+  overflow: auto;
+  padding: 22px 22px 30px;
+}

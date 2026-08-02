@@ -1,0 +1,116 @@
+.shell {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--surface);
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* The page title scrolls with the content — there is no fixed app bar. */
+.scroller {
+  height: 100%;
+  overflow: auto;
+  padding: 12px 20px 90px;
+}
+
+.kicker {
+  font-size: 12.5px;
+  color: rgba(var(--fgc), 0.42);
+  margin-bottom: 4px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 29px;
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  color: var(--fg);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  font-size: 13px;
+  color: rgba(var(--fgc), 0.45);
+  margin-bottom: 18px;
+}
+
+.searchToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  margin-top: 2px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  color: rgba(var(--fgc), 0.6);
+  background: rgba(var(--fgc), 0.055);
+}
+
+.searchToggleOpen {
+  background: var(--tk-accent, #4a7fae);
+  color: var(--on-accent);
+}
+
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 10px 0 14px;
+  padding: 9px 13px;
+  border-radius: 11px;
+  background: rgba(var(--fgc), 0.055);
+  animation: tk-fade 0.14s ease-out;
+}
+
+.searchIcon {
+  flex: none;
+  color: rgba(var(--fgc), 0.4);
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15.5px;
+  color: var(--fg);
+}
+
+.searchClear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex: none;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 9px;
+  color: var(--surface);
+  background: rgba(var(--fgc), 0.35);
+  cursor: pointer;
+}
