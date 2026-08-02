@@ -34,8 +34,14 @@ pub enum RepeatRule {
     },
     #[serde(rename = "yearly")]
     Yearly { n: u32 },
+    /// A specific weekday, optionally every `n` weeks (n = 1 weekly, 2 for
+    /// "every other Thursday", etc).
     #[serde(rename = "weeklyOn")]
-    WeeklyOn { weekday: u32 },
+    WeeklyOn { weekday: u32, n: u32 },
+    /// The `week`-th `weekday` of every `n` months — e.g. "the first Thursday
+    /// of each month". `week` is 1..=5, or -1 for "last".
+    #[serde(rename = "monthlyDow")]
+    MonthlyDow { n: u32, week: i32, weekday: u32 },
 }
 
 #[derive(Serialize, Clone, Debug, PartialEq)]

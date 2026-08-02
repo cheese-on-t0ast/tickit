@@ -12,9 +12,17 @@ interface CaptureTip {
 }
 
 const CAPTURE_TIPS: CaptureTip[] = [
-  { examples: ['tomorrow', 'next friday', 'in 3 days', 'on the 15th'], desc: 'sets a due date' },
   {
-    examples: ['every month', 'each week', 'every other week'],
+    examples: ['tomorrow', 'next friday', 'in a few days', 'end of the month', 'eod'],
+    desc: 'sets a due date',
+  },
+  {
+    examples: [
+      'every month',
+      'once a week',
+      'every other thursday',
+      'first monday of the month',
+    ],
     desc: 'sets a recurring schedule — only the next occurrence ever shows',
   },
   { examples: ['!!', 'urgent'], desc: 'high priority' },

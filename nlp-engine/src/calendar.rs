@@ -132,6 +132,18 @@ pub fn month_from_name(name: &str) -> Option<u32> {
     }
 }
 
+/// Like [`word_to_num`] but also understands the vague colloquial quantities
+/// ("a", "a couple", "a few") that read as a count in date phrases.
+pub fn qty_to_num(s: &str) -> Option<u32> {
+    match s {
+        "a" | "an" => Some(1),
+        "a couple" | "a couple of" => Some(2),
+        "a few" => Some(3),
+        "several" => Some(4),
+        _ => word_to_num(s),
+    }
+}
+
 pub fn word_to_num(s: &str) -> Option<u32> {
     match s {
         "one" => Some(1),
@@ -163,6 +175,30 @@ pub fn nearest_weekday_delta(today_wd: u32, target_wd: u32) -> i64 {
 pub fn next_weekday_delta(today_wd: u32, target_wd: u32) -> i64 {
     let nearest = nearest_weekday_delta(today_wd, target_wd);
     if nearest == 7 { 7 } else { nearest + 7 }
+}
+
+/// Day-of-month (1..=31) of the `week`-th `weekday` in month (y, m).
+/// `week` is 1..=5, or -1 for "last". A requested 5th occurrence that doesn't
+/// exist in the month clamps down to the last one, so this always returns a
+/// real day — matching how we only ever surface the next single occurrence.
+pub fn nth_weekday_of_month(y: i32, m: u32, week: i32, weekday: u32) -> u32 {
+    let first_wd = SimpleDate::new(y, m, 1).weekday();
+    // Day-of-month of the first `weekday` this month (1..=7).
+    let first_occ = 1 + (weekday as i64 - first_wd as i64).rem_euclid(7) as u32;
+    let dim = days_in_month(y, m);
+    if week <= -1 {
+        let mut day = first_occ;
+        while day + 7 <= dim {
+            day += 7;
+        }
+        day
+    } else {
+        let mut day = first_occ + (week.max(1) as u32 - 1) * 7;
+        while day > dim {
+            day -= 7;
+        }
+        day
+    }
 }
 
 #[cfg(test)]

@@ -2,6 +2,28 @@ import type { RepeatRule } from '../types'
 import { addDays, addMonths, parseISODate, todayISO, toISODate } from './date'
 
 const WEEKDAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+const WEEK_ORDINALS = ['first', 'second', 'third', 'fourth', 'fifth']
+
+/** "every month" / "every 3 months" / "every N months" phrasing helper. */
+function everyMonths(n: number): string {
+  return n <= 1 ? 'every month' : `every ${n} months`
+}
+
+/** Day-of-month of the `week`-th `weekday` (0=Sun) in the given month.
+ *  week 1..5, or -1 for the last such weekday; a missing 5th clamps to last. */
+function nthWeekdayOfMonth(year: number, month: number, week: number, weekday: number): number {
+  const firstDow = new Date(year, month, 1).getDay()
+  const firstOcc = 1 + ((weekday - firstDow + 7) % 7)
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
+  if (week <= -1) {
+    let day = firstOcc
+    while (day + 7 <= daysInMonth) day += 7
+    return day
+  }
+  let day = firstOcc + (Math.max(1, week) - 1) * 7
+  while (day > daysInMonth) day -= 7
+  return day
+}
 
 function ordinal(n: number): string {
   const rem100 = n % 100
@@ -30,8 +52,17 @@ export function describeRepeat(r: RepeatRule): string {
     }
     case 'yearly':
       return r.n <= 1 ? 'Every year' : `Every ${r.n} years`
-    case 'weeklyOn':
-      return `Every ${WEEKDAY_NAMES[r.weekday]}`
+    case 'weeklyOn': {
+      const day = WEEKDAY_NAMES[r.weekday]
+      if (r.n <= 1) return `Every ${day}`
+      if (r.n === 2) return `Every other ${day}`
+      return `Every ${r.n} weeks on ${day}`
+    }
+    case 'monthlyDow': {
+      const day = WEEKDAY_NAMES[r.weekday]
+      const which = r.week === -1 ? 'last' : WEEK_ORDINALS[r.week - 1] ?? 'first'
+      return `The ${which} ${day} of ${everyMonths(r.n)}`
+    }
   }
 }
 
@@ -59,6 +90,14 @@ export function nextOccurrence(fromDate: string | null, repeat: RepeatRule): str
     case 'yearly':
       return addMonths(base, 12 * Math.max(1, repeat.n))
     case 'weeklyOn':
-      return addDays(base, 7)
+      // `base` already sits on the target weekday, so stepping whole weeks
+      // keeps it there.
+      return addDays(base, 7 * Math.max(1, repeat.n))
+    case 'monthlyDow': {
+      const d = parseISODate(base)
+      const target = new Date(d.getFullYear(), d.getMonth() + Math.max(1, repeat.n), 1)
+      const day = nthWeekdayOfMonth(target.getFullYear(), target.getMonth(), repeat.week, repeat.weekday)
+      return toISODate(new Date(target.getFullYear(), target.getMonth(), day))
+    }
   }
 }

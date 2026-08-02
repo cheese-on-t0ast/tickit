@@ -9,7 +9,10 @@ export type RepeatRule =
   | { freq: 'weekly'; n: number }
   | { freq: 'monthly'; n: number; dayOfMonth?: number }
   | { freq: 'yearly'; n: number }
-  | { freq: 'weeklyOn'; weekday: number }
+  /** weekday 0=Sun..6=Sat, every `n` weeks (n=2 -> "every other Thursday"). */
+  | { freq: 'weeklyOn'; weekday: number; n: number }
+  /** The `week`-th weekday of every `n` months; week 1..5 or -1 for "last". */
+  | { freq: 'monthlyDow'; n: number; week: number; weekday: number }
 
 export interface Subtask {
   id: string

@@ -7,6 +7,8 @@ const PLACEHOLDERS = [
   'Book car in for maintenance next Tuesday',
   'Send invoice on the 15th of every month',
   'Standup every weekday 9am #product',
+  'Therapy every other Thursday',
+  'Board meeting first Monday of the month',
   'Renew passport in 10 days !!',
 ]
 
